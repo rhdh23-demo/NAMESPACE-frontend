@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: NAMESPACE-poi-map-app-dev
+  annotations:
+    argocd/app-name: NAMESPACE-poi-map-app-dev
+    backstage.io/kubernetes-id: NAMESPACE-poi-map-app
+    backstage.io/kubernetes-namespace: NAMESPACE
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh23-demo/NAMESPACE-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.rosa-pzz6v.9nln.p1.openshiftapps.com/dev-pipelines/ns/NAMESPACE/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.rosa-pzz6v.9nln.p1.openshiftapps.com/k8s/ns/NAMESPACE/deployments/NAMESPACE-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.rosa-pzz6v.9nln.p1.openshiftapps.com/#https://github.com/rhdh23-demo/NAMESPACE-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://NAMESPACE-poi-map-app-NAMESPACE.apps.rosa-pzz6v.9nln.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/username"
+  system: workshop-system-NAMESPACE
+  consumesApis:
+    - gateway-api-NAMESPACE
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-NAMESPACE
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/username"
